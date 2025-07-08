@@ -7,7 +7,7 @@
     <label for="endpoint">Endpoint:</label>
     <select id="endpoint" name="endpoint">
         <option value="random">Random</option>
-        <option value="explore">Explore</option>
+        <option value="species">Species</option>
         <!-- Add more endpoints as needed -->
     </select>
     <label for="query">Search Query:</label>
