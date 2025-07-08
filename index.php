@@ -2,7 +2,7 @@
 // PHP code can go here if needed
 ?>
 
-<h1>Query the API</h1>
+<h1 style ="color:blue">Query the API</h1>
 <form action="api.php" method="get">
     <label for="endpoint">Endpoint:</label>
     <select id="endpoint" name="endpoint">
