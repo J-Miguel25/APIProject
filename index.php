@@ -1,5 +1,5 @@
 <?php
-// PHP code can go here if needed
+// PHP code cango here if needed
 ?>
 
 <h1 style ="color:blue">Query the API</h1>
