@@ -1,18 +1,18 @@
 <?php
-$endpoint = isset($_GET['endpoint']) ? $_GET['endpoint'] : 'random'; // default to 'explore'
-if (isset($_GET['query'])) {
+$endpoint = isset($_POST['endpoint']) ? $_POST['endpoint'] : 'random'; // default to 'explore'
+if (isset($_POST['query'])) {
     $url = 'https://aes.shenlu.me/api/v1/' . $endpoint;
     $query_fields = [
         'q' => $_GET['query']
     ];
 
-    if($_GET['query'] == ""){
+    if($_POST['query'] == ""){
         $curl = curl_init($url);
     }else{
         $curl = curl_init($url . '?' . http_build_query($query_fields));
     }
 
-    if ($_GET['endpoint'] == 'species') {
+    if ($_POST['endpoint'] == 'species') {
         $curl = curl_init($url);
     }
 
@@ -30,7 +30,7 @@ if (isset($_GET['query'])) {
         echo "empty";
     }
 
-    if($_GET['endpoint'] == 'species'){
+    if($_POST['endpoint'] == 'species'){
         echo "<h1>Species</h1>";
         foreach ($data as $item) {
             echo "<li> ID: " . htmlspecialchars($item['id'] ?? 'No ID') . "</li>";
@@ -41,7 +41,6 @@ if (isset($_GET['query'])) {
             echo "<li> Conservation Status: " . htmlspecialchars($item['conservation_status'] ?? '') . "</li>";
             echo "<hr/>";
         }
-        // Prevent the single-item output below from running for 'species'
         return;
     }
 
