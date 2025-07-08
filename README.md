@@ -1,1 +1,5 @@
 # APIProject
+## Amazing Endemic Species
+About
+Amazing Endemic Species (AES) is an open-source, community-driven SaaS (Species-as-a-Service) application. AES has 3D dymaic globe, endemic species dataset and user-friendly API services.
+
