@@ -43,12 +43,12 @@ function createCard(item) {
   `;
 }
 
-async function fetchSpecies(endpoint, query = "") {
+async function fetchSpecies(endpoint) {
   const container = document.getElementById("resultsGrid");
   document.getElementById("results").textContent = "Loading...";
   container.innerHTML = "";
 
-  const url = `https://aes.shenlu.me/api/v1/${endpoint}${query ? "?q=" + encodeURIComponent(query) : ""}`;
+  const url = `https://aes.shenlu.me/api/v1/${endpoint}`;
   const res = await fetch(url);
   const data = await res.json();
 
@@ -66,14 +66,39 @@ async function fetchSpecies(endpoint, query = "") {
   container.innerHTML = cards;
 }
 
+async function fetchSpeciesCount() {
+  try {
+      const response = await fetch('https://aes.shenlu.me/api/v1/speciescount');
+      const data = await response.json();
+      document.getElementById('speciesCount').textContent = data.count !== undefined ? data.count : 'N/A';
+  } catch (err) {
+      document.getElementById('speciesCount').textContent = 'Error fetching count';
+  }
+}
+
+async function fetchCountryCount() {
+    try {
+        const response = await fetch('https://aes.shenlu.me/api/v1/countrycount');
+        const data = await response.json();
+        document.getElementById('countryCount').textContent = data.count !== undefined ? data.count : 'N/A';
+    } catch (err) {
+        document.getElementById('countryCount').textContent = 'Error fetching count';
+    }
+  }
+
 document.getElementById("apiForm").addEventListener("submit", function (e) {
   e.preventDefault();
   const endpoint = document.getElementById("endpoint").value;
-  const query = document.getElementById("query").value.trim();
-  fetchSpecies(endpoint, query);
+  fetchSpecies(endpoint);
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
+  // Fetch all api data 
   await loadCountryMap();
   fetchSpecies("species");
+  fetchSpeciesCount();
+  fetchCountryCount();
 });
+
+
+

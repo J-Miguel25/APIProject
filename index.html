@@ -7,12 +7,16 @@
 </head>
 <body>
   <h1>Amazing Endemic Species API</h1>
+  <div class="count-card">
+      <h3>Total Species Count: <span id="speciesCount"></span> Species</h3>
+
+      <h3>Countries: <span id="countryCount"></span> Countries</h3>
+  </div>
   <form id="apiForm" class="search-bar">
     <select id="endpoint">
       <option value="species">Species</option>
       <option value="random">Random</option>
     </select>
-    <input type="text" id="query" placeholder="Search Query..." />
     <button type="submit">Search</button>
   </form>
   <div id="results"></div>
