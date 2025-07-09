@@ -1,95 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Amazing Endemic Species API</title>
+  <meta charset="UTF-8" />
+  <title>Amazing Endemic Species</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Endemic Species API</h1>
-    <div>
-        <h3>Total Species Count: <span id="speciesCount"></span> Species</h3>
-        <script>
-            async function fetchSpeciesCount() {
-            try {
-                const response = await fetch('https://aes.shenlu.me/api/v1/speciescount');
-                const data = await response.json();
-                document.getElementById('speciesCount').textContent = data.count !== undefined ? data.count : 'N/A';
-            } catch (err) {
-                document.getElementById('speciesCount').textContent = 'Error fetching count';
-            }
-            }
-            fetchSpeciesCount();
-        </script>
-    </div>
-    <div>
-        <h3>Countries: <span id="countryCount"></span> Countries</h3>
-        <script>
-            async function fetchSpeciesCount() {
-            try {
-                const response = await fetch('https://aes.shenlu.me/api/v1/countrycount');
-                const data = await response.json();
-                document.getElementById('countryCount').textContent = data.count !== undefined ? data.count : 'N/A';
-            } catch (err) {
-                document.getElementById('countryCount').textContent = 'Error fetching count';
-            }
-            }
-            fetchSpeciesCount();
-        </script>
-    </div>
-    <form id="apiForm">
-        <label for="endpoint">Endpoint:</label>
-        <select id="endpoint" name="endpoint">
-            <option value="random">Random</option>
-            <option value="species">Species</option>
-        </select>
-        <!--
-            <label for="query">Search Query:</label>
-            <input type="text" id="query" name="query">
-        -->
-        <button type="submit">Search</button>
-    </form>
-    <div id="results"></div>
-    <script>
-        document.getElementById('apiForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const endpoint = document.getElementById('endpoint').value;
-            let url = `https://aes.shenlu.me/api/v1/${endpoint}`;
+  <h1>Amazing Endemic Species API</h1>
+  <div class="count-card">
+      <h3>Total Species Count: <span id="speciesCount"></span> Species</h3>
 
-            document.getElementById('results').innerHTML = "Loading...";
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-
-                if (!data || (Array.isArray(data) && data.length === 0)) {
-                    document.getElementById('results').innerHTML = "empty";
-                    return;
-                }
-
-                if (endpoint === 'species' && Array.isArray(data)) {
-                    let html = "<h1>All Endemic Species</h1>";
-                    data.forEach(item => {
-                        html += `<li>ID: ${item.id ?? 'No ID'}</li>`;
-                        html += `<li>Scientific name: ${item.scientific_name ?? 'No name'}</li>`;
-                        html += `<li>Common Name: ${item.common_name ?? 'No common Name'}</li>`;
-                        html += `<li>Image: ${data.image ? `<img src="${data.image}" alt="Image" style="max-width:200px;"/>` : 'No image'}</li>`;
-                        html += `<li>Group: ${item.group ?? ''}</li>`;
-                        html += `<li>Conservation Status: ${item.conservation_status ?? ''}</li>`;
-                        html += `<hr/>`;
-                    });
-                    document.getElementById('results').innerHTML = html;
-                } else {
-                    let html = "<h1>Random</h1>";
-                    html += `<li>ID: ${data.id ?? 'No ID'}</li>`;
-                    html += `<li>Scientific name: ${data.scientific_name ?? 'No name'}</li>`;
-                    html += `<li>Common Name: ${data.common_name ?? 'No common Name'}</li>`;
-                    html += `<li>Image: ${data.image ? `<img src="${data.image}" alt="Image" style="max-width:200px;"/>` : 'No image'}</li>`;
-                    html += `<li>Group: ${data.group ?? ''}</li>`;
-                    html += `<li>Conservation Status: ${data.conservation_status ?? ''}</li>`;
-                    document.getElementById('results').innerHTML = html;
-                }
-            } catch (err) {
-                document.getElementById('results').innerHTML = "Error fetching data.";
-            }
-        });
-    </script>
+      <h3>Countries: <span id="countryCount"></span> Countries</h3>
+  </div>
+  <form id="apiForm" class="search-bar">
+    <select id="endpoint">
+      <option value="species">Species</option>
+      <option value="random">Random</option>
+    </select>
+    <button type="submit">Search</button>
+  </form>
+  <div id="results"></div>
+  <div id="resultsGrid"></div>
+  <script src="script.js"></script>
+</body>
+</html>
