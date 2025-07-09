@@ -102,16 +102,33 @@ body {
     position: absolute;
     top: -6px;
     right: -6px;
-    background-color: #e74c3c;
     color: white;
     padding: 2px 6px;
     font-size: 12px;
     font-weight: bold;
     border-radius: 50%;
   }
-  .status-VU { background-color: #f1c40f; }
-  .status-EN { background-color: #e67e22; }
-  .status-CR { background-color: #e74c3c; }
-  .status-LC { background-color: #2ecc71; }
-  .status-NT { background-color: #3498db; }
-  
+  .status-badge.status-VU { background-color: #f1c40f; }
+.status-badge.status-EN { background-color: #e67e22; }
+.status-badge.status-CR { background-color: #e74c3c; }
+.status-badge.status-LC { background-color: #2ecc71; }
+.status-badge.status-NT { background-color: #3498db; }
+
+.result-card.status-VU { background-color: #f1c40f; }
+.result-card.status-EN { background-color: #e67e22; }
+.result-card.status-CR { background-color: #e74c3c; }
+.result-card.status-LC { background-color: #2ecc71; }
+.result-card.status-NT { background-color: #3498db; }
+
+.count-card.status-VU { background-color: #f1c40f; }
+.count-card.status-EN { background-color: #e67e22; }
+.count-card.status-CR { background-color: #e74c3c; }
+.count-card.status-LC { background-color: #2ecc71; }
+.count-card.status-NT { background-color: #3498db; }
+
+.status-VU { background-color: #f1c40f; }
+.status-EN { background-color: #e67e22; }
+.status-CR { background-color: #e74c3c; }
+.status-LC { background-color: #2ecc71; }
+.status-NT { background-color: #3498db; }
+
